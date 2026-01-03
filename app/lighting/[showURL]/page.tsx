@@ -6,6 +6,10 @@ export type Project = {
 import styles from "./page.module.css";
 import lighting from "@/data/lighting.json"
 
+export async function generateStaticParams() {
+  return [{"showURL": "junie-b-jones"}, {"showURL": "legally-blonde"}];
+};
+
 export default async function ShowPage({
   params,
 }: {
