@@ -17,10 +17,6 @@
   background-color: var(--background);
 }
 
-.image {
-  height: auto;
-  width: 50%;
-}
 
 .main {
   display: flex;
