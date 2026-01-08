@@ -1,6 +1,6 @@
 export type Project = {
   name: string;
-  images: string[];
+  imageCount: number;
 };
 
 import lighting from "@/data/lighting.json"

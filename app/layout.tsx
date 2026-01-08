@@ -26,7 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <div><Link href="\lighting"> <h1>lighting</h1></Link></div>
+        <div>
+          <Link href="\lighting"> <h1>Lighting</h1></Link>
+          <Link href="\"> <h1>Home</h1></Link>
+        </div>
         {children}
       </body>
     </html>

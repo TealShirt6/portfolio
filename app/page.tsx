@@ -1,13 +1,11 @@
-import Image from "next/image";
 import styles from "./page.module.css";
+import EmblaCarousel from "@/components/EmblaCarousel";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
+    <div className={`${styles.page} theme-light`}>
       <main>
-        <p>
-          Hello World!
-        </p>
+        <EmblaCarousel slides={Array.from(Array(9).keys())}></EmblaCarousel>
       </main>
     </div>
   );
