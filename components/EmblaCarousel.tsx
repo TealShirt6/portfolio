@@ -22,7 +22,22 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   //   dragFree: true
   // }align: (viewSize: number, snapSize: number, index: number) => {return}
 
-  const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({containScroll: 'keepSnaps', dragFree: true})
+  const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({containScroll: 'keepSnaps', dragFree: true, dragThreshold: 20})
+
+  const scrollPrev = useCallback(() => {
+    console.log("WEEE")
+    if (!emblaMainApi || !emblaThumbsApi) return
+
+    emblaMainApi?.scrollPrev()
+  }, [emblaMainApi, emblaThumbsApi])
+
+  const scrollNext = useCallback(() => {
+
+        if (!emblaMainApi || !emblaThumbsApi) return
+
+
+    emblaMainApi?.scrollNext()
+  }, [emblaMainApi, emblaThumbsApi])
 
   const onThumbClick = useCallback(
     (index: number) => {
@@ -33,7 +48,6 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     },
     [emblaMainApi, emblaThumbsApi]
   )
-
 
   const onSelect = useCallback(() => {
     console.log("onSelect!")
@@ -53,16 +67,30 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 
   return (
     <div className="embla">
-      <div className="embla__viewport" ref={emblaMainRef}>
+      <div className="mainEmbla">
+        <button className='leftArrow' onClick={scrollPrev}>
+        </button>
+        <button className='rightArrow' onClick={scrollNext}>
+
+        </button>
+        <div className="embla__viewport" ref={emblaMainRef}>
+        
+      
         <div className="embla__container">
 
           {slides.map((index) => (
             <div className="embla__slide" key={index}>
-              <Image src={`/lighting/junie-b-jones/junie-b-jones${index+1}.jpg`} fill={true }alt="" className='image'></Image>
+              <Image src={`/lighting/junie-b-jones/junie-b-jones${index+1}.jpg`} fill sizes='200vw' quality={85} alt="" className='image'></Image>
+                            {/* <img src={`/lighting/junie-b-jones/junie-b-jones${index+1}.jpg`} className='image'></img> */}
+
             </div>
           ))}
         </div>
       </div>
+      
+        
+      </div>
+      
 
       <div className="embla-thumbs">
         <div className="embla-thumbs__viewport" ref={emblaThumbsRef}>

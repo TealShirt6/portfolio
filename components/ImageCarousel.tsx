@@ -1,24 +1,17 @@
-export type Project = {
-  name: string;
-  imageCount: number;
-};
+"use client"
+import styles from "./carousel.module.css"
+import useEmblaCarousel from "embla-carousel-react"
 
-import styles from "./page.module.css";
-import lighting from "@/data/lighting.json"
 
-export default async function ImageCarousel({
-  params,
-}: {
-  params: Promise<{ showURL: string }>
-}) {
-  const { showURL } = await params
-
-  const show: Project = (lighting as Record<string, Project>)[showURL]
-
+export default function ImageCarousel() {
+  const [emblaRef] = useEmblaCarousel()
   
   return (
-    <div>
-      <h1>{show.name}</h1>
+    <div className={styles.embla} ref={emblaRef}>
+      <div className = {styles.embla__container}> 
+        <div className={styles.embla__slide}><p>Slide 1</p></div>
+        <div className={styles.embla__slide}><p>Slide 2</p></div>
+      </div>
     </div>
   )
 }

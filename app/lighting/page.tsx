@@ -11,6 +11,8 @@ export default async function ShowPage(){
   
   return (
     <div>
+
+      
         {Object.entries(lighting as Record<string, Project>).map(
   ([showURL, project]: [string, Project]) => (
     <li key={showURL}>
