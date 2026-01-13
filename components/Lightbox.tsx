@@ -1,21 +1,17 @@
 "use client"
 
 import React, { useState, useEffect, useCallback } from 'react'
-import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import Thumb from './EmblaCarouselThumbsButton'
 import Image from "next/image"
 import { Photo } from 'react-photo-album'
 
-export default function EmblaCarousel({photos}: {photos: Photo[]}) {
-  const [selectedIndex, setSelectedIndex] = useState(0)
-  const [emblaMainRef, emblaMainApi] = useEmblaCarousel()
+export default function Lightbox({photos, onClick, startIndex}: {photos: Photo[], onClick: () => void, startIndex: number}) {
+  const [emblaMainRef, emblaMainApi] = useEmblaCarousel({startIndex: startIndex})
   const [showArrows, setShowArrows] = useState(false)
   let timeoutID: ReturnType<typeof setTimeout>
-
-  const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({containScroll: 'keepSnaps', dragFree: true})
-
-  function carouselTimeout() {
+  function carouselTimeout(pointer: React.PointerEvent<HTMLDivElement>) {
+    if (pointer.pointerType != "mouse") return
     clearTimeout(timeoutID)
     setShowArrows(true)
     timeoutID = setTimeout(()=> {
@@ -23,46 +19,23 @@ export default function EmblaCarousel({photos}: {photos: Photo[]}) {
     }, 3000)
 
   }
-
   const scrollPrev = useCallback(() => {
-    if (!emblaMainApi || !emblaThumbsApi) return
+    if (!emblaMainApi) return
 
     emblaMainApi?.scrollPrev()
-  }, [emblaMainApi, emblaThumbsApi])
+  }, [emblaMainApi])
 
   const scrollNext = useCallback(() => {
 
-        if (!emblaMainApi || !emblaThumbsApi) return
+        if (!emblaMainApi) return
 
 
     emblaMainApi?.scrollNext()
-  }, [emblaMainApi, emblaThumbsApi])
-
-  const onThumbClick = useCallback(
-    (index: number) => {
-      console.log("onthumb click!")
-
-      if (!emblaMainApi || !emblaThumbsApi) return
-      emblaMainApi.scrollTo(index)
-    },
-    [emblaMainApi, emblaThumbsApi]
-  )
-
-  const onSelect = useCallback(() => {
-    if (!emblaMainApi || !emblaThumbsApi) return
-    setSelectedIndex(emblaMainApi.selectedScrollSnap())
-    emblaThumbsApi.scrollTo(emblaMainApi.selectedScrollSnap())
-  }, [emblaMainApi, emblaThumbsApi, setSelectedIndex])
-
-  useEffect(() => {
-    if (!emblaMainApi) return
-    onSelect()
-    emblaMainApi.on('select', onSelect).on('reInit', onSelect)
-  }, [emblaMainApi, onSelect])
+  }, [emblaMainApi])
 
   return (
-    <div className="embla">
-      <div onMouseMove={carouselTimeout} onClick={carouselTimeout} className="mainEmbla">
+    <div className="embla__lightbox">
+      <div onPointerMove={carouselTimeout} className="mainEmbla">
         <button className={`leftArrow carouselArrow ${showArrows ? "arrowsVisible" : "arrowsNotVisible"}`} onClick={scrollPrev}>
           <svg className="embla__button__svg" viewBox="50 0 532 532">
             <path
@@ -80,31 +53,14 @@ export default function EmblaCarousel({photos}: {photos: Photo[]}) {
           </svg>
         </button>
         <div className="embla__viewport" ref={emblaMainRef}>
-        
-      
-        <div className="embla__container">
-
+        <div className="embla__container__lightbox">
           {photos.map((photo) => (
             <div className="embla__slide" key={photo.key}>
-              <Image src={photo.src} fill sizes='200vw' quality={85} alt="" className='image'></Image>
+              <Image onClick={onClick} src={photo.src} fill sizes='200vw' quality={85} alt="" className='image'></Image>
             </div>
           ))}
         </div>
       </div>
-      </div>
-      <div className="embla-thumbs">
-        <div className="embla-thumbs__viewport" ref={emblaThumbsRef}>
-          <div className="embla-thumbs__container">
-            {photos.map((photo, index) => (
-              <Thumb
-                key={index}
-                photo={photo}
-                onClick={() => onThumbClick(index)}
-                selected={index === selectedIndex}
-              />
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   )

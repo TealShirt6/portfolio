@@ -1,10 +1,18 @@
 {
     "junie-b-jones": {
         "name": "Junie B Jones",
-        "imageCount": 7
+        "imageCount": 7,
+        "details": "Rolling Meadows High School Theater\nDirector: Stephanie Svarz\nLighting Designer: Michael Bauer",
+        "description": "First show drawn fully in vectorworks. Used effectively a rep plot consisting of two conventional side washes (warm and cool) and front wash, LED cyc and top wash. Added specials and gobos.",
+        "photoCredits": "Photos by Sean Radcliff and Michael Bauer",
+        "paperworkCount": 4
     },
     "legally-blonde": {
         "name": "Legally Blonde",
-        "imageCount": 1
+        "imageCount": 1,
+        "details": "High School Dist 214 Summer Musical 2025\nWheeling High School Theater\nDirector: Jeremy Morton\nLighting Designer: Michael Bauer",
+        "description": "",
+        "photoCredits": "Photos by and Michael Bauer",
+        "paperworkCount": 0
     }
 }

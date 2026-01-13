@@ -1,0 +1,20 @@
+.toggle {
+    border: 1.5 solid #d6d6d6;
+    border-radius: 6.5px;
+    width: 60px;
+    height:25px;
+    position: absolute;
+    right:0;
+}
+
+.mode {
+    height: 25px;
+    width: 30px;
+    color: #d6d6d6;
+}
+
+.selected {
+    background-color: #d6d6d6;
+    border-radius: 5px;
+    color: white;
+}

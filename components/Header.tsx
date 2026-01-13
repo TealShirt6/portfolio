@@ -1,5 +1,4 @@
 "use client"
-import useEmblaCarousel from "embla-carousel-react"
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./header.module.css"

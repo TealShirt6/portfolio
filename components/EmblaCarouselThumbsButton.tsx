@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Image from "next/image";
+import { Photo } from 'react-photo-album';
 
 
 type PropType = {
@@ -10,8 +11,9 @@ type PropType = {
   onClick: () => void
 }
 
-export const Thumb: React.FC<PropType> = (props) => {
-  const { selected, index, onClick } = props
+
+
+export default function Thumb({selected, onClick, photo}: {selected: boolean, onClick: () => void, photo: Photo}){
 
   return (
     <div
@@ -36,7 +38,8 @@ export const Thumb: React.FC<PropType> = (props) => {
               /_next/image?url=%2Flighting%2Fjunie-b-jones%2Fjunie-b-jones1.jpg&w=1920&q=85 1920w, 
               /_next/image?url=%2Flighting%2Fjunie-b-jones%2Fjunie-b-jones1.jpg&w=2048&q=85 2048w, 
               /_next/image?url=%2Flighting%2Fjunie-b-jones%2Fjunie-b-jones1.jpg&w=3840&q=85 3840w" onClick={onClick} src={`/lighting/junie-b-jones/junie-b-jones${index+1}.jpg`} className='image'></img> */}
-              <img role='button' sizes='30vw' srcSet={`/_next/image?url=%2Flighting%2Fjunie-b-jones%2Fjunie-b-jones${index + 1}.jpg&w=384&q=75`} onClick={onClick} src={`/lighting/junie-b-jones/junie-b-jones${index+1}.jpg`} className='image'></img>
+              {/* <img role='button' sizes='30vw' srcSet={`/_next/image?url=%2Flighting%2Fjunie-b-jones%2Fjunie-b-jones${index + 1}.jpg&w=384&q=75`} onClick={onClick} src={`/lighting/junie-b-jones/junie-b-jones${index+1}.jpg`} className='image'></img> */}
+              <Image role='button' onClick={onClick} src={photo.src} alt=""  sizes="20vw" width={photo.width} height={photo.height} className='image'></Image>
     </div>
   )
 }

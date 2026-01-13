@@ -1,7 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
+import { createPortal } from "react-dom";
 import type { Photo } from "react-photo-album"
+import Lightbox from "./Lightbox";
 
 
 import {
@@ -36,20 +39,31 @@ function renderNextImage(
   );
 }
 
-export default function PhotoGallery({photos}: {photos: Photo[]}) {
-  
+export default function PhotoGallery({photos, targetHeight=300}: {photos: Photo[], targetHeight?: number}) {
+  const [index, setIndex] = useState(-1);
 
   return (
+    <>
     <RowsPhotoAlbum
       photos={photos}
       render={{ image: renderNextImage }}
-      targetRowHeight={300}
+      targetRowHeight={targetHeight}
         sizes={{
         size: "1168px",
         sizes: [
           { viewport: "(max-width: 1200px)", size: "calc(100vw - 32px)" },
         ],
       }}
-    />
+      // onClick={(photo) => setIndex(photo.index)}
+      onClick={({index}) => {
+          setIndex(index)
+      }}
+      />
+
+      {
+        (index > -1) && createPortal(<Lightbox photos={photos} startIndex={index} onClick={()=>setIndex(-1)}></Lightbox>, document.body)
+
+      }
+    </>
   );
 }

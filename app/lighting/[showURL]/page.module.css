@@ -1,5 +1,27 @@
 
-.image {
-  height: auto;
-  width: 50%;
+.bodyText {
+  font-family: 'Geist';
+  white-space: pre-wrap;
+  font-weight: 450;
+  line-height: 150%;
+  letter-spacing: 1px;
+}
+
+.details {
+  margin: 1rem 0;
+}
+
+.credits {
+  text-align: right;
+}
+
+.description {
+  margin: 2rem 0;
+  max-width: 500px;
+}
+
+.title {
+  letter-spacing: -.5px;
+  font-size: 3.5rem;
+  margin: 4rem 0 2rem 0;
 }
