@@ -1,18 +1,1 @@
-{
-    "junie-b-jones": {
-        "name": "Junie B Jones",
-        "imageCount": 7,
-        "details": "Rolling Meadows High School Theater\nDirector: Stephanie Svarz\nLighting Designer: Michael Bauer",
-        "description": "First show drawn fully in vectorworks. Used effectively a rep plot consisting of two conventional side washes (warm and cool) and front wash, LED cyc and top wash. Added specials and gobos.",
-        "photoCredits": "Photos by Sean Radcliff and Michael Bauer",
-        "paperworkCount": 4
-    },
-    "legally-blonde": {
-        "name": "Legally Blonde",
-        "imageCount": 1,
-        "details": "High School Dist 214 Summer Musical 2025\nWheeling High School Theater\nDirector: Jeremy Morton\nLighting Designer: Michael Bauer",
-        "description": "",
-        "photoCredits": "Photos by and Michael Bauer",
-        "paperworkCount": 0
-    }
-}
+{"legally-blonde":{"details":"High School Dist 214 Summer Musical 2025\nWheeling High School Theater\nDirector: Jeremy Morton\nLighting Designer: Michael Bauer","description":"","name":"Legally Blonde","photoCredits":"Photos by and Michael Bauer","showPhotos":[{"path":"legally-blonde1.jpg","width":3000,"height":2000}],"paperworkImages":[]},"junie-b-jones":{"details":"Rolling Meadows High School Theater\nDirector: Stephanie Svarz\nLighting Designer: Michael Bauer","description":"First show drawn fully in vectorworks. Used effectively a rep plot consisting of two conventional side washes (warm and cool) and front wash, LED cyc and top wash. Added specials and gobos.","name":"Junie B Jones","photoCredits":"Photos by Sean Radcliff and Michael Bauer","showPhotos":[{"path":"junie-b-jones1.jpg","width":2048,"height":1365},{"path":"junie-b-jones2.jpg","width":2048,"height":1365},{"path":"junie-b-jones3.jpg","width":2048,"height":1365},{"path":"junie-b-jones4.jpg","width":6000,"height":4000},{"path":"junie-b-jones5.jpg","width":2048,"height":1365},{"path":"junie-b-jones6.jpg","width":2048,"height":1365},{"path":"junie-b-jones7.jpg","width":2048,"height":1365}],"paperworkImages":[{"path":"paperwork1.jpg","width":2000,"height":1294},{"path":"paperwork2.jpg","width":2000,"height":1294},{"path":"paperwork3.jpg","width":10200,"height":6600},{"path":"paperwork4.jpg","width":816,"height":1070}]}}

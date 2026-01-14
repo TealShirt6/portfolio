@@ -32,6 +32,7 @@ function renderNextImage(
         src={photo}
         alt={alt}
         title={title}
+        quality={85}
         sizes="200vw"
         placeholder={"blurDataURL" in photo ? "blur" : undefined}
       />

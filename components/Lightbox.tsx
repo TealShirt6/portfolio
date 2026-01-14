@@ -55,7 +55,7 @@ export default function Lightbox({photos, onClick, startIndex}: {photos: Photo[]
         <div className="embla__viewport" ref={emblaMainRef}>
         <div className="embla__container__lightbox">
           {photos.map((photo) => (
-            <div className="embla__slide" key={photo.key}>
+            <div className="embla__slide" key={photo.src}>
               <Image onClick={onClick} src={photo.src} fill sizes='200vw' quality={85} alt="" className='image'></Image>
             </div>
           ))}

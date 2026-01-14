@@ -27,7 +27,7 @@ export default function ClientShowPage({show, showURL, photos, paperwork}: {show
         <>
       <BackArrow></BackArrow>
       <div className="hero" style={{backgroundImage: `url(/_next/image?url=%2Flighting%2F${showURL}%2F${showURL}1.jpg&w=1920&q=85)`}}></div>
-      <h1 className={styles.title}>{show.name}</h1>
+      <h1  id="carousel" className={styles.title}>{show.name}</h1>
       <Toggle view={view} toggleAction={() => {
           setView(view==Views.GALLERY ? Views.CAROUSEL : Views.GALLERY)
       }}>
