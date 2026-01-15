@@ -4,7 +4,7 @@
   white-space: pre-wrap;
   font-weight: 450;
   line-height: 150%;
-  letter-spacing: 1px;
+  letter-spacing: .5px;
 }
 
 .details {
@@ -18,6 +18,27 @@
 .description {
   margin: 2rem 0;
   max-width: 500px;
+  text-align: justify;
+  max-width: 600px;
+}
+
+.descriptionContainer {
+  display:flex;
+  justify-content: center;
+}
+
+.prev {
+  position: absolute;
+  left: 0;
+  font-size: 1.25rem;
+  padding-bottom: 1rem;
+}
+
+.next {
+  position: absolute;
+  right: 0;
+  font-size: 1.25rem;
+  padding-bottom: 1rem;
 }
 
 .title {

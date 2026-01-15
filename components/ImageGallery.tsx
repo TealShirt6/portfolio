@@ -5,6 +5,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import type { Photo } from "react-photo-album"
 import Lightbox from "./Lightbox";
+import { useMediaQuery } from 'react-responsive'
 
 
 import {
@@ -42,6 +43,9 @@ function renderNextImage(
 
 export default function PhotoGallery({photos, targetHeight=300}: {photos: Photo[], targetHeight?: number}) {
   const [index, setIndex] = useState(-1);
+  const smallScreen = useMediaQuery({
+    query: '(max-width: 400px)'
+  })
 
   return (
     <>
@@ -55,14 +59,15 @@ export default function PhotoGallery({photos, targetHeight=300}: {photos: Photo[
           { viewport: "(max-width: 1200px)", size: "calc(100vw - 32px)" },
         ],
       }}
-      // onClick={(photo) => setIndex(photo.index)}
       onClick={({index}) => {
+          if (!smallScreen) {
           setIndex(index)
+          }
       }}
       />
 
       {
-        (index > -1) && createPortal(<Lightbox photos={photos} startIndex={index} onClick={()=>setIndex(-1)}></Lightbox>, document.body)
+        (index > -1) && createPortal(<Lightbox photos={photos} startIndex={index} onClick={() => setIndex(-1)}></Lightbox>, document.body)
 
       }
     </>

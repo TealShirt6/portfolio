@@ -8,35 +8,52 @@ import { Photo } from 'react-photo-album'
 
 export default function Lightbox({photos, onClick, startIndex}: {photos: Photo[], onClick: () => void, startIndex: number}) {
   const [emblaMainRef, emblaMainApi] = useEmblaCarousel({startIndex: startIndex})
-  const [showArrows, setShowArrows] = useState(false)
+  const [showRightArrow, setShowRightArrow] = useState(false)
+  const [showLeftArrow, setShowLeftArrow] = useState(false)
   let timeoutID: ReturnType<typeof setTimeout>
-  function carouselTimeout(pointer: React.PointerEvent<HTMLDivElement>) {
-    if (pointer.pointerType != "mouse") return
+  function carouselTimeout() {
+    if (!emblaMainApi) return
     clearTimeout(timeoutID)
-    setShowArrows(true)
+    if (emblaMainApi?.canScrollPrev()) {
+      setShowLeftArrow(true)
+    }
+    
+    if (emblaMainApi?.canScrollNext()) {
+      setShowRightArrow(true)
+    }
+    
     timeoutID = setTimeout(()=> {
-      setShowArrows(false)
+      setShowLeftArrow(false)
+      setShowRightArrow(false)
     }, 3000)
 
   }
   const scrollPrev = useCallback(() => {
+    carouselTimeout()
+
     if (!emblaMainApi) return
 
     emblaMainApi?.scrollPrev()
   }, [emblaMainApi])
 
   const scrollNext = useCallback(() => {
-
-        if (!emblaMainApi) return
-
+    carouselTimeout()
+    
+    if (!emblaMainApi) return
 
     emblaMainApi?.scrollNext()
   }, [emblaMainApi])
 
   return (
     <div className="embla__lightbox">
-      <div onPointerMove={carouselTimeout} className="mainEmbla">
-        <button className={`leftArrow carouselArrow ${showArrows ? "arrowsVisible" : "arrowsNotVisible"}`} onClick={scrollPrev}>
+      <div onPointerMove={(e) => {
+        if (e.pointerType != "mouse") return
+        carouselTimeout()
+      }} className="mainEmbla">
+        <p className="slideProgress">
+         {((emblaMainApi?.selectedScrollSnap() ?? 0) + 1).toString()} / {photos.length}
+        </p>
+        <button className={`leftArrow carouselArrow ${showLeftArrow ? "arrowsVisible" : "arrowsNotVisible"}`} onClick={scrollPrev}>
           <svg className="embla__button__svg" viewBox="50 0 532 532">
             <path
               fill="currentColor"
@@ -44,7 +61,7 @@ export default function Lightbox({photos, onClick, startIndex}: {photos: Photo[]
             />
           </svg>
         </button>
-        <button className={`rightArrow carouselArrow ${showArrows ? "arrowsVisible" : "arrowsNotVisible"}`} onClick={scrollNext}>
+        <button className={`rightArrow carouselArrow ${showRightArrow ? "arrowsVisible" : "arrowsNotVisible"}`} onClick={scrollNext}>
           <svg className="embla__button__svg" viewBox="-50 0 532 532">
             <path
               fill="currentColor"

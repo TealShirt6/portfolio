@@ -40,6 +40,11 @@
 
 }
 
+/* #cheese {
+  overflow: hidden;
+  height: 100vh
+} */
+
 main {
   margin: 0 1.5rem;
   position: relative
@@ -139,7 +144,7 @@ html {
 p {
   color: var(--text-body)
 }
-h1, h2 {
+h1, h2, h3, h5 {
   color: var(--text-header);
   margin: 0px;
 }
@@ -272,4 +277,76 @@ a {
 
 .rightArrow {
   right: 0;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem
+}
+
+.showCard {
+  width: 100%;
+  aspect-ratio: 4/3;
+  position:relative;
+  overflow:hidden;
+  z-index: 3;
+}
+
+.showCardImage {
+  object-fit: cover;
+  z-index: -2;
+  transition: scale 1s ease-in-out;
+}
+
+.showCardText {
+  position:absolute;
+  bottom: 25px;
+  width: 100%;
+  font-size: 1.5rem;
+  transition: bottom 0.5s ease-in-out;
+  font-family: 'Geist';
+}
+@media only screen and (min-width: 601px) {
+  .showCard:hover  img {
+    scale: 1.1
+  }
+  .showCard:hover  .showCardOverlay {
+    opacity: 100;
+  }
+  .showCard:hover  .showCardText {
+    bottom: 40px;  
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .showCardOverlay {
+    opacity:100% !important;
+    background-color: transparent !important;
+  }
+}
+
+
+.showCardOverlay {
+  text-align: center;
+  transition: opacity .5s ease-in-out;
+  opacity:0;
+  width: 100%;
+  height: 100%;
+  background-color: #888888a0;
+}
+
+.title {
+  letter-spacing: -.4px;
+  font-size: 5rem;
+  margin: 4rem 0 4rem 0;
+  text-align: center;
+}
+
+.slideProgress {
+  position: absolute;
+  font-family: 'Geist';
+  font-size: 1.5rem;
+  margin: 1rem;
+  z-index: 3;
 }

@@ -10,33 +10,45 @@ import { Photo } from 'react-photo-album'
 export default function EmblaCarousel({photos}: {photos: Photo[]}) {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [emblaMainRef, emblaMainApi] = useEmblaCarousel()
-  const [showArrows, setShowArrows] = useState(false)
+    const [showRightArrow, setShowRightArrow] = useState(false)
+    const [showLeftArrow, setShowLeftArrow] = useState(false)
   let timeoutID: ReturnType<typeof setTimeout>
 
   const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({containScroll: 'keepSnaps', dragFree: true})
 
-  function carouselTimeout() {
-    clearTimeout(timeoutID)
-    setShowArrows(true)
-    timeoutID = setTimeout(()=> {
-      setShowArrows(false)
-    }, 3000)
-
-  }
-
-  const scrollPrev = useCallback(() => {
-    if (!emblaMainApi || !emblaThumbsApi) return
-
-    emblaMainApi?.scrollPrev()
-  }, [emblaMainApi, emblaThumbsApi])
-
-  const scrollNext = useCallback(() => {
-
-        if (!emblaMainApi || !emblaThumbsApi) return
-
-
-    emblaMainApi?.scrollNext()
-  }, [emblaMainApi, emblaThumbsApi])
+  
+    function carouselTimeout() {
+        if (!emblaMainApi) return
+        clearTimeout(timeoutID)
+        if (emblaMainApi?.canScrollPrev()) {
+          setShowLeftArrow(true)
+        }
+        
+        if (emblaMainApi?.canScrollNext()) {
+          setShowRightArrow(true)
+        }
+        
+        timeoutID = setTimeout(()=> {
+          setShowLeftArrow(false)
+          setShowRightArrow(false)
+        }, 3000)
+    
+      }
+      const scrollPrev = useCallback(() => {
+        carouselTimeout()
+    
+        if (!emblaMainApi) return
+    
+        emblaMainApi?.scrollPrev()
+      }, [emblaMainApi])
+    
+      const scrollNext = useCallback(() => {
+        carouselTimeout()
+        
+        if (!emblaMainApi) return
+    
+        emblaMainApi?.scrollNext()
+      }, [emblaMainApi])
 
   const onThumbClick = useCallback(
     (index: number) => {
@@ -62,8 +74,8 @@ export default function EmblaCarousel({photos}: {photos: Photo[]}) {
 
   return (
     <div className="embla">
-      <div onMouseMove={carouselTimeout} onClick={carouselTimeout} className="mainEmbla">
-        <button className={`leftArrow carouselArrow ${showArrows ? "arrowsVisible" : "arrowsNotVisible"}`} onClick={scrollPrev}>
+      <div onMouseMove={carouselTimeout} className="mainEmbla">
+        <button className={`leftArrow carouselArrow ${showLeftArrow ? "arrowsVisible" : "arrowsNotVisible"}`} onClick={scrollPrev}>
           <svg className="embla__button__svg" viewBox="50 0 532 532">
             <path
               fill="currentColor"
@@ -71,7 +83,7 @@ export default function EmblaCarousel({photos}: {photos: Photo[]}) {
             />
           </svg>
         </button>
-        <button className={`rightArrow carouselArrow ${showArrows ? "arrowsVisible" : "arrowsNotVisible"}`} onClick={scrollNext}>
+        <button className={`rightArrow carouselArrow ${showRightArrow ? "arrowsVisible" : "arrowsNotVisible"}`} onClick={scrollNext}>
           <svg className="embla__button__svg" viewBox="-50 0 532 532">
             <path
               fill="currentColor"
@@ -85,7 +97,7 @@ export default function EmblaCarousel({photos}: {photos: Photo[]}) {
         <div className="embla__container">
 
           {photos.map((photo) => (
-            <div className="embla__slide" key={photo.key}>
+            <div className="embla__slide" key={photo.src}>
               <Image src={photo.src} fill sizes='200vw' quality={85} alt="" className='image'></Image>
             </div>
           ))}
