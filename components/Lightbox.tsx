@@ -10,6 +10,7 @@ export default function Lightbox({photos, onClick, startIndex}: {photos: Photo[]
   const [emblaMainRef, emblaMainApi] = useEmblaCarousel({startIndex: startIndex})
   const [showRightArrow, setShowRightArrow] = useState(false)
   const [showLeftArrow, setShowLeftArrow] = useState(false)
+  const [selectedIndex, setSelectedIndex] = useState(0)
   let timeoutID: ReturnType<typeof setTimeout>
   function carouselTimeout() {
     if (!emblaMainApi) return
@@ -44,6 +45,15 @@ export default function Lightbox({photos, onClick, startIndex}: {photos: Photo[]
     emblaMainApi?.scrollNext()
   }, [emblaMainApi])
 
+  function onSelect() {
+    setSelectedIndex(emblaMainApi?.selectedScrollSnap() ?? 0)
+  }
+
+  useEffect(() => {
+      if (!emblaMainApi) return
+      emblaMainApi.on('select', onSelect).on('reInit', onSelect)
+    }, [emblaMainApi, onSelect])
+
   return (
     <div className="embla__lightbox">
       <div onPointerMove={(e) => {
@@ -51,7 +61,7 @@ export default function Lightbox({photos, onClick, startIndex}: {photos: Photo[]
         carouselTimeout()
       }} className="mainEmbla">
         <p className="slideProgress">
-         {((emblaMainApi?.selectedScrollSnap() ?? 0) + 1).toString()} / {photos.length}
+         {selectedIndex} / {photos.length}
         </p>
         <button className={`leftArrow carouselArrow ${showLeftArrow ? "arrowsVisible" : "arrowsNotVisible"}`} onClick={scrollPrev}>
           <svg className="embla__button__svg" viewBox="50 0 532 532">
