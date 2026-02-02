@@ -61,7 +61,7 @@ export default function Lightbox({photos, onClick, startIndex}: {photos: Photo[]
         carouselTimeout()
       }} className="mainEmbla">
         <p className="slideProgress">
-         {selectedIndex} / {photos.length}
+         {selectedIndex + 1} / {photos.length}
         </p>
         <button className={`leftArrow carouselArrow ${showLeftArrow ? "arrowsVisible" : "arrowsNotVisible"}`} onClick={scrollPrev}>
           <svg className="embla__button__svg" viewBox="50 0 532 532">

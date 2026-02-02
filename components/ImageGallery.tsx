@@ -34,7 +34,7 @@ function renderNextImage(
         alt={alt}
         title={title}
         quality={85}
-        sizes="200vw"
+        // sizes="200vw"
         placeholder={"blurDataURL" in photo ? "blur" : undefined}
       />
     </div>
@@ -53,11 +53,12 @@ export default function PhotoGallery({photos, targetHeight=300}: {photos: Photo[
       photos={photos}
       render={{ image: renderNextImage }}
       targetRowHeight={targetHeight}
-        sizes={{
-        size: "1168px",
-        sizes: [
-          { viewport: "(max-width: 1200px)", size: "calc(100vw - 32px)" },
-        ],
+      rowConstraints={{ singleRowMaxHeight: 400 }}
+      sizes={{
+      size: "1168px",
+      sizes: [
+        { viewport: "(max-width: 1200px)", size: "calc(100vw - 32px)" },
+      ],
       }}
       onClick={({index}) => {
           if (!smallScreen) {

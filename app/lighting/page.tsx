@@ -20,7 +20,9 @@ const geistSans = Geist({
 
 export default function ShowPage(){
 
-  const shows = lighting as [Project]
+  const excludeShows = ["senior-showcase-2024"]
+
+  const shows = (lighting as [Project]).filter((a) => !excludeShows.includes(a.showURL))
 
   return (<>
     <div className="hero" style={{backgroundImage: `url(/_next/image?url=%2FDSC_0226.JPEG&w=1920&q=85)`}}></div>
@@ -31,7 +33,7 @@ export default function ShowPage(){
       {
         shows.map(a => 
           <div key={a.showURL} className="showCard">
-            <Image src={`/lighting/${a.showURL}/${a.showPhotos[0].path}`} fill sizes='50vw' quality={85} alt="" className='showCardImage'></Image>
+            <Image src={`/lighting/${a.showURL}/${a.showPhotos[0].path}`} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" quality={85} alt="" className='showCardImage'></Image>
             <Link  href={`/lighting/${a.showURL}`}>
               <div className="showCardOverlay">
                 <h3 className={`${geistSans.variable} showCardText`}>
