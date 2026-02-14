@@ -73,7 +73,7 @@ export default function EmblaCarousel({photos}: {photos: Photo[]}) {
   }, [emblaMainApi, onSelect])
 
   return (
-    <div className="embla">
+    <div id="carousel" className="embla">
       <div onMouseMove={carouselTimeout} className="mainEmbla">
         <button className={`leftArrow carouselArrow ${showLeftArrow ? "arrowsVisible" : "arrowsNotVisible"}`} onClick={scrollPrev}>
           <svg className="embla__button__svg" viewBox="50 0 532 532">

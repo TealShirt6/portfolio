@@ -10,7 +10,7 @@ export default function Lightbox({photos, onClick, startIndex}: {photos: Photo[]
   const [emblaMainRef, emblaMainApi] = useEmblaCarousel({startIndex: startIndex})
   const [showRightArrow, setShowRightArrow] = useState(false)
   const [showLeftArrow, setShowLeftArrow] = useState(false)
-  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [selectedIndex, setSelectedIndex] = useState(startIndex)
   let timeoutID: ReturnType<typeof setTimeout>
   function carouselTimeout() {
     if (!emblaMainApi) return
@@ -83,7 +83,7 @@ export default function Lightbox({photos, onClick, startIndex}: {photos: Photo[]
         <div className="embla__container__lightbox">
           {photos.map((photo) => (
             <div className="embla__slide" key={photo.src}>
-              <Image onClick={onClick} src={photo.src} fill sizes='200vw' quality={85} alt="" className='image'></Image>
+              <Image onClick={onClick} src={photo.src} fill sizes='175vw' quality={85} alt="" className='image'></Image>
             </div>
           ))}
         </div>

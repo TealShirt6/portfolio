@@ -6,7 +6,10 @@ export type Project = {
   photoCredits: string;
   showPhotos: {width: number, height: number, path: string}[];
   paperworkImages: {width: number, height: number, path: string}[];
+  includeCoverPhoto: boolean;
 };
+
+export const excludeShows = ["senior-showcase-2024"]
 
 import { Geist } from "next/font/google";
 import lighting from "@/data/lighting.json"
@@ -19,8 +22,6 @@ const geistSans = Geist({
 });
 
 export default function ShowPage(){
-
-  const excludeShows = ["senior-showcase-2024"]
 
   const shows = (lighting as [Project]).filter((a) => !excludeShows.includes(a.showURL))
 

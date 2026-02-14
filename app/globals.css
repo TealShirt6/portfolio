@@ -6,7 +6,14 @@
 @tailwind utilities; */
 
 
-
+.details * {
+    font-family: inherit;
+  /* white-space: pre-wrap; */
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
 
 :root {
   --background: #000000;
@@ -141,9 +148,6 @@ html {
   left:0;
 }
 
-p {
-  color: var(--text-body)
-}
 h1, h2, h3, h5 {
   color: var(--text-header);
   margin: 0px;
@@ -345,6 +349,7 @@ a {
 
 .slideProgress {
   position: absolute;
+  color: var(--text-body);
   font-family: 'Geist';
   font-size: 1.5rem;
   margin: 1rem;
