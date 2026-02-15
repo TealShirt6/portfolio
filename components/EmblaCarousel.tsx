@@ -10,8 +10,8 @@ import { Photo } from 'react-photo-album'
 export default function EmblaCarousel({photos}: {photos: Photo[]}) {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [emblaMainRef, emblaMainApi] = useEmblaCarousel()
-    const [showRightArrow, setShowRightArrow] = useState(false)
-    const [showLeftArrow, setShowLeftArrow] = useState(false)
+    const [showRightArrow, setShowRightArrow] = useState(true)
+    const [showLeftArrow, setShowLeftArrow] = useState(true)
   let timeoutID: ReturnType<typeof setTimeout>
 
   const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({containScroll: 'keepSnaps', dragFree: true})
@@ -74,6 +74,7 @@ export default function EmblaCarousel({photos}: {photos: Photo[]}) {
 
   return (
     <div id="carousel" className="embla">
+      <hr></hr>
       <div onMouseMove={carouselTimeout} className="mainEmbla">
         <button className={`leftArrow carouselArrow ${showLeftArrow ? "arrowsVisible" : "arrowsNotVisible"}`} onClick={scrollPrev}>
           <svg className="embla__button__svg" viewBox="50 0 532 532">
@@ -118,6 +119,7 @@ export default function EmblaCarousel({photos}: {photos: Photo[]}) {
           </div>
         </div>
       </div>
+      <hr></hr>
     </div>
   )
 }

@@ -91,6 +91,11 @@ main {
 .embla-thumbs__viewport {
   height: 9rem;
   overflow: hidden;
+  
+}
+
+.embla-thumbs__viewport::after {
+  background-image: repeating-linear-gradient(red, yellow 10%, green 0%);
 }
 .embla-thumbs__container {
   display: flex;
@@ -99,7 +104,6 @@ main {
   margin-top: 1.5rem
 }
 .embla-thumbs__slide {
-  /* flex: 0 0 auto; */
   margin-left: var(--thumbs-slide-spacing);
   height: var(--thumbs-slide-height);
   display: flex;
@@ -108,6 +112,9 @@ main {
   transition-timing-function: ease-in-out;
   transition-property: scale, box-shadow;
   transition-duration: 0.20s;
+  opacity:80%;
+  border: 3px transparent solid;
+  box-sizing: border-box;
 }
 
 .image {
@@ -116,8 +123,15 @@ main {
   width: auto;
 }
 
+.embla-thumbs__slide--selected > .image {
+  border-radius: 3px;
+}
+
 .embla-thumbs__slide--selected {
   scale: 1.1;
+  opacity:100%;
+  border: 3px #bac5c6 solid;
+  border-radius: 6px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -125,7 +139,6 @@ html {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* box-sizing: border-box; */
   /* line-height: 1.15; */
   background-color: var(--background);
   /* font-family: Inter, 'system-ui', -apple-system, BlinkMacSystemFont, 'Segoe UI',
