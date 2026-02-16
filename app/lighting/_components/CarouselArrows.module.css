@@ -1,0 +1,43 @@
+
+.arrowsVisible {
+  transition: opacity .2s linear;
+  opacity: 100%;
+}
+
+.arrowsNotVisible {
+  transition: opacity 0.5s linear;
+  opacity: 0%;
+}
+
+.svg {
+  width: 65%;
+  height: 65%;
+}
+
+.leftArrow {
+  left: 0;
+}
+
+.carouselArrow {
+  top: calc(50% - 2.5rem);
+  color: #d6d6d6;
+  border: 2 solid #d6d6d6;
+  border-radius: 50%;
+  position:absolute;
+  margin: 1rem;
+  height: 3rem;
+  width: 3rem;
+  z-index: 2;
+  background: none;
+  opacity:none;
+}
+
+.carouselArrow:hover {
+  color: white;
+  border-color: white;
+}
+
+.rightArrow {
+  right: 0;
+}
+

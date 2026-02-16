@@ -11,15 +11,12 @@ export type Project = {
 
 export const excludeShows = ["senior-showcase-2024"]
 
-import { Geist } from "next/font/google";
 import lighting from "@/data/lighting.json"
-import Link from "next/link";
-import Image from "next/image";
+import Link from "next/link"
+import Image from "next/image"
+import styles from "./page.module.css"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+
 
 export default function ShowPage(){
 
@@ -27,19 +24,22 @@ export default function ShowPage(){
 
   return (<>
     <div className="hero" style={{backgroundImage: `url(/_next/image?url=%2FDSC_0226.JPEG&w=1920&q=85)`}}></div>
-    <h1 className="title">
+    <h1 className={styles.title}>
       Lighting
     </h1>
-    <div className="grid">
+
+    {/*Map over shows array to display show cards from newest to oldest left to right
+    */}
+    <div className={styles.grid}>
       {
         shows.map(a => 
-          <div key={a.showURL} className="showCard">
-            <Image src={`/lighting/${a.showURL}/${a.showPhotos[0].path}`} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" quality={85} alt="" className='showCardImage'></Image>
+          <div key={a.showURL} className={styles.showCard}>
+            <Image src={`/lighting/${a.showURL}/${a.showPhotos[0].path}`} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" quality={85} alt="" className={styles.showCardImage}></Image>
             <Link  href={`/lighting/${a.showURL}`}>
-              <div className="showCardOverlay">
-                <h3 className={`${geistSans.variable} showCardText`}>
+              <div className={styles.showCardOverlay}>
+                <h2 className={styles.showCardText}>
                   {a.name}
-                </h3>
+                </h2>
               </div>         
             </Link>             
           </div>)

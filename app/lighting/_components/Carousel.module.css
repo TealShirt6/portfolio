@@ -1,0 +1,103 @@
+.emblaCarousel {
+    max-width: 80vw;
+    margin: auto;
+}
+
+.mainEmbla {
+    position:relative;
+    margin:1rem 0;
+}
+
+.emblaViewport {
+    overflow: hidden;
+}
+
+.emblaContainer {
+    height: calc(min(70vh, 70vw));
+    display: flex;
+}
+
+.slide {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+    position:relative;
+}
+
+.thumbsViewport {
+    margin: 1rem 0;
+    height: calc(var(--thumbs-scale-size) * var(--thumbs-slide-height));
+    overflow: hidden;
+    --thumbs-scale-size: 1.1;
+    --thumbs-slide-spacing: 1rem;
+    --thumbs-slide-height: 6rem;
+}
+
+@media (max-width: 768px) {
+  .thumbsViewport {
+    --thumbs-slide-height: 5rem;
+    --thumbs-slide-spacing: 0.8rem;
+  }
+}
+
+.thumbsContainer {
+    display: flex;
+    margin-top: calc((var(--thumbs-scale-size) - 1)/ 2 * var(--thumbs-slide-height))
+}
+
+.thumbsSlide {
+    margin-left: var(--thumbs-slide-spacing);
+    height: var(--thumbs-slide-height);
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    transition-timing-function: ease-in-out;
+    transition-property: scale;
+    transition-duration: 0.20s;
+    opacity:80%;
+    border: 3px transparent solid;
+    box-sizing: border-box;
+}
+
+.thumbsSlideSelected {
+    scale: 1.1;
+    opacity:100%;
+    border: 3px #bac5c6 solid;
+    border-radius: 6px;
+}
+
+.image {
+  height:100%;
+  object-fit: contain;
+  width: auto;
+}
+
+.thumbsSlideSelected > .image {
+  border-radius: 3px;
+}
+
+.emblaLightbox {
+    background-color: #000000c5; /* semi-transparent black */
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.emblaContainerLightbox {
+    height: 90vh;
+    display: flex;
+    margin-top: 5vh;
+}
+
+.slideProgress {
+  position: absolute;
+  color: var(--text-body);
+  font-family: 'Geist';
+  font-size: 1.5rem;
+  margin: 1rem;
+  z-index: 3;
+}

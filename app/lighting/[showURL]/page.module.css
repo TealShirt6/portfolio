@@ -1,33 +1,36 @@
-
-.bodyText {
-  font-family: 'Geist';
+/* Since injecting html into a div, we use .bodyText * to select all children of an element with class .bodyText */
+.bodyText, .bodyText * {
+  font-family: var(--font-geist-sans);
   font-weight: 450;
   line-height: 150%;
   letter-spacing: .5px;
-  color: var(--text-body)
+  color: var(--text-body);
+  min-width: 0;
+  /* white-space: wra */
 }
 
-.details {
-  margin: 1rem 0;
+/* Selects direct children*/
+.details > * {
+  margin: 0;
 }
 
 .credits {
   text-align: right;
 }
 
-.descriptionContainer {
+.description {
   margin: 1rem auto 2rem;
   max-width: 100%;
 }
 
 @media (min-width: 768px) {
-  .descriptionContainer {
+  .description {
     max-width: 80%;
   }
 }
 
 @media (min-width: 1200px) {
-  .descriptionContainer {
+  .description {
     max-width: 60%;
   }
 }
@@ -50,4 +53,16 @@
   letter-spacing: -.5px;
   font-size: 3.5rem;
   margin: 4rem 0 2rem 0;
+}
+
+.backArrow {
+    color: #d6d6d6;
+    position: absolute;
+    top: -3rem;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.backArrow:hover {
+    color: white;
 }

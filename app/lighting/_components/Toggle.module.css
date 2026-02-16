@@ -1,10 +1,8 @@
 .toggle {
     border: 1.5 solid #d6d6d6;
     border-radius: 6.5px;
-    width: 60px;
+    min-width: 60px;
     height:25px;
-    position: absolute;
-    right:0;
 }
 
 .mode {

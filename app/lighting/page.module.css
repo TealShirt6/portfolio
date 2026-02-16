@@ -1,0 +1,70 @@
+.title {
+  letter-spacing: -.5px;
+  font-size: 5rem;
+  margin: 4rem 0 4rem 0;
+  text-align: center;
+}
+
+/*
+Show cards are in a css grid
+using minmax(300px, 1fr) means that css grid gives each show card a fractional amount of space while following gap spacing and making each show card at least 300px
+auto-fill means that if there are not enough elements to fill a row it will not stretch the elements but just leave empty space
+*/
+.grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem
+}
+
+.showCard {
+  width: 100%;
+  aspect-ratio: 4/3;
+  position:relative;
+  overflow:hidden;
+}
+
+.showCardImage {
+  object-fit: cover;
+  z-index: -2;
+  transition: scale 1s ease-in-out;
+}
+
+.showCardOverlay {
+  text-align: center;
+  transition: opacity .5s ease-in-out;
+  opacity:0;
+  width: 100%;
+  height: 100%;
+  background-color: #888888a0;
+}
+
+.showCardText {
+  position:absolute;
+  bottom: 25px;
+  width: 100%;
+  transition: bottom 0.5s ease-in-out;
+  font-family: var(--font-geist-sans);
+}
+
+/*
+On hover add frost, scale image, and show text
+*/
+.showCard:hover  img {
+  scale: 1.1
+}
+.showCard:hover  .showCardOverlay {
+  opacity: 100;
+}
+.showCard:hover  .showCardText {
+  bottom: 40px;  
+}
+
+/*
+For mobile devices with no hover, always show the text and don't add frost
+*/
+@media only screen and (max-width: 600px) {
+  .showCardOverlay {
+    opacity:100% !important;
+    background-color: transparent !important;
+  }
+}

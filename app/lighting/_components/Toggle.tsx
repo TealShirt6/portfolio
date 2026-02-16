@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import styles from "./toggle.module.css"
+import styles from "./Toggle.module.css"
 
 export const Views = Object.freeze({
     GALLERY: "Gallery",
@@ -9,10 +9,8 @@ export const Views = Object.freeze({
 });
 
 export default function Toggle({view, toggleAction}: {view: string, toggleAction: ()=>void}) {
-  // const [view, setView] = useState("Gallery")
 
   return (
-    <a href="#carousel">
     <div className={styles.toggle} onClick={toggleAction} >
       <svg version="1.1" viewBox="-1 -2 20 22"className={`${styles.mode} ${(view == Views.GALLERY) && styles.selected}`}>
       <g>
@@ -30,9 +28,7 @@ export default function Toggle({view, toggleAction}: {view: string, toggleAction
           <path d="m16,15l1,0l0,1l-1,0l0,-1z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" id="svg_6"/>
         </g>
         </svg>
-    </div>
-    </a>
-    
+    </div>    
   )
 }
 
