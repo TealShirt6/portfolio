@@ -2,9 +2,6 @@ import React, { useCallback, useEffect, useState } from "react"
 import useEmblaCarousel from 'embla-carousel-react'
 import styles from "./CarouselArrows.module.css"
 
-
-
-// export default function CarouselArrows({showLeftArrow, showRightArrow, scrollPrev, scrollNext}: {showLeftArrow: Boolean, showRightArrow: Boolean, scrollPrev: () => void, scrollNext: () => void}) {
 export default function CarouselArrows(emblaApi: ReturnType<typeof useEmblaCarousel>[1]): [React.ReactNode, () => void]{
 
     const [showRightArrow, setShowRightArrow] = useState(true)
