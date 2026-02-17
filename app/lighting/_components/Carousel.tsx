@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
+import { useMediaQuery } from 'react-responsive'
 import Image from "next/image"
 import { Photo } from 'react-photo-album'
 import CarouselArrows from "./CarouselArrows"
@@ -10,9 +11,13 @@ import styles from "./Carousel.module.css"
 export default function EmblaCarousel({photos}: {photos: Photo[]}) {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [emblaMainRef, emblaMainApi] = useEmblaCarousel()
-
   const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({containScroll: 'keepSnaps', dragFree: true})
+
   const [arrows, carouselTimeout] = CarouselArrows(emblaMainApi)
+
+  const smallScreen = useMediaQuery({
+    query: '(max-width: 768px)'
+  })
 
   const onThumbClick = useCallback(
     (index: number) => {
@@ -34,11 +39,11 @@ export default function EmblaCarousel({photos}: {photos: Photo[]}) {
   useEffect(() => {
     if (!emblaMainApi) return
     onSelect()
+    carouselTimeout()
     emblaMainApi.on('select', onSelect).on('reInit', onSelect)
 
     // Scroll into view
-    document.getElementById("bottomBreak")?.scrollIntoView(false);
-
+    document.getElementById("credits")?.scrollIntoView(false);
   }, [emblaMainApi, onSelect])
 
   
@@ -46,7 +51,7 @@ export default function EmblaCarousel({photos}: {photos: Photo[]}) {
 
   return (
     <div className={styles.emblaCarousel}>
-      <hr></hr>
+      {smallScreen && <hr></hr>}
       <div onMouseMove={carouselTimeout} className={styles.mainEmbla}>
         {arrows}
         <div className={styles.emblaViewport} ref={emblaMainRef}>
@@ -71,7 +76,7 @@ export default function EmblaCarousel({photos}: {photos: Photo[]}) {
           ))}
         </div>
       </div>
-      <hr id="bottomBreak"></hr>
+      {smallScreen && <hr style={{marginTop: "1.5rem"}}></hr>}
     </div>
   )
 }

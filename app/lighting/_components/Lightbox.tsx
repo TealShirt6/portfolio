@@ -28,7 +28,7 @@ export default function Lightbox({photos, onClick, startIndex}: {photos: Photo[]
       <div onPointerMove={(e) => {
         if (e.pointerType != "mouse") return
         carouselTimeout()
-      }} className={styles.mainEmbla}>
+      }} className={styles.mainLightbox}>
         <p className={styles.slideProgress}>
          {selectedIndex + 1} / {photos.length}
         </p>

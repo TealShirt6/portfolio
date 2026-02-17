@@ -13,7 +13,7 @@
 }
 
 .emblaContainer {
-    height: calc(min(70vh, 70vw));
+    height: calc(min(70vh, 60vw));
     display: flex;
 }
 
@@ -35,7 +35,7 @@
 
 @media (max-width: 768px) {
   .thumbsViewport {
-    --thumbs-slide-height: 5rem;
+    --thumbs-slide-height: 4.5rem;
     --thumbs-slide-spacing: 0.8rem;
   }
 }
@@ -87,10 +87,13 @@
     z-index: 1000;
 }
 
+.mainLightbox {
+    position: relative;
+}
+
 .emblaContainerLightbox {
     height: 90vh;
     display: flex;
-    margin-top: 5vh;
 }
 
 .slideProgress {

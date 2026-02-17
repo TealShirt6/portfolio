@@ -41,7 +41,7 @@ export default function CarouselArrows(emblaApi: ReturnType<typeof useEmblaCarou
     timeoutID = setTimeout(()=> {
       setShowLeftArrow(false)
       setShowRightArrow(false)
-    }, 3000)
+    }, 2500)
 
   }
 

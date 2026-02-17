@@ -57,7 +57,7 @@ export default function ShowPage() {
     ) : (
       <ImageGallery photos={show.includeCoverPhoto ? showPhotos : showPhotos.slice(1)}></ImageGallery>
     )}
-    <p className={`${styles.bodyText} ${styles.credits}`}>{show.photoCredits}</p>
+    <p id="credits" className={`${styles.bodyText} ${styles.credits}`}>{show.photoCredits}</p>
     <div className={`${styles.bodyText} ${styles.description}`} dangerouslySetInnerHTML={{__html: show.description}}></div>
     <ImageGallery photos={paperworkImages}></ImageGallery>
 
