@@ -94,6 +94,7 @@
 .emblaContainerLightbox {
     height: 90vh;
     display: flex;
+    margin-top: 5vh;
 }
 
 .slideProgress {
