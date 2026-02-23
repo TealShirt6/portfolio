@@ -23,7 +23,9 @@ export default function ShowPage(){
   const shows = (lighting as [Project]).filter((a) => !excludeShows.includes(a.showURL))
 
   return (<>
-    <div className="hero" style={{backgroundImage: `url(/_next/image?url=%2FDSC_0226.JPEG&w=1920&q=85)`}}></div>
+    <div className="hero">
+      <img src={`/_next/image?url=%2FDSC_0226.JPEG&w=1920&q=85`}></img>
+    </div>
     <h1 className={styles.title}>
       Lighting
     </h1>

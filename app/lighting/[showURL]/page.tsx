@@ -41,7 +41,9 @@ export default function ShowPage() {
 
   return (
       <>
-    <div className="hero" style={{backgroundImage: `url(/_next/image?${new URLSearchParams({url: showPhotos[0].src, w: "1920", q: "85"}).toString()}`}}></div>
+    <div className="hero">
+      <img src={`/_next/image?${new URLSearchParams({url: showPhotos[0].src, w: "1920", q: "85"}).toString()}`}></img>
+    </div>
     <BackArrow></BackArrow>
     <h1 className={styles.title}>{show.name}</h1>
     <div style={{display: "flex", justifyContent: "space-between", margin: "1rem 0"}}>
@@ -53,7 +55,7 @@ export default function ShowPage() {
     </div>
     
     {view==Views.CAROUSEL ? (
-      <EmblaCarousel photos={showPhotos}></EmblaCarousel>
+      <EmblaCarousel photos={show.includeCoverPhoto ? showPhotos : showPhotos.slice(1)}></EmblaCarousel>
     ) : (
       <ImageGallery photos={show.includeCoverPhoto ? showPhotos : showPhotos.slice(1)}></ImageGallery>
     )}
